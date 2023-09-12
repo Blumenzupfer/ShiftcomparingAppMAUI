@@ -52,8 +52,23 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0"/>
     </ItemGroup>
 
+
+
     <ItemGroup>
-      <Folder Include="Views\" />
+      <MauiXaml Update="Views\Persons\AllPersonsView.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Persons\AllPersonsView.xaml.cs">
+        <DependentUpon>AllPersonsView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Persons\AllPersonsView.xaml" />
     </ItemGroup>
 
 </Project>
