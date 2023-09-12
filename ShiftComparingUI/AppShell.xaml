@@ -3,7 +3,7 @@
     x:Class="ShiftComparingUI.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:ShiftComparingUI.Views"
+    xmlns:views="clr-namespace:ShiftComparingUI.Views.Persons"
     xmlns:shiftsystems="clr-namespace:ShiftComparingUI.Views.Shiftsystems"
     xmlns:comparingTables="clr-namespace:ShiftComparingUI.Views.ComparingTables"
     FlyoutBehavior="Locked" FlyoutBackgroundColor="Orange" Padding="10">

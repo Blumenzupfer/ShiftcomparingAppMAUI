@@ -1,4 +1,4 @@
-namespace ShiftComparingLibrary.Models;
+namespace ShiftComparingUI.ShiftComparingLibrary.Models;
 
 public class ShiftgroupModel
 {

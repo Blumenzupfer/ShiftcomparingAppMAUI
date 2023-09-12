@@ -2,8 +2,42 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShiftComparingUI.Views.Shiftsystems.AllShiftsystemsView">
-    <ContentPage.Content>
+             xmlns:model="clr-namespace:ShiftComparingUI.ShiftComparingLibrary.Models"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ShiftComparingLibrary.ViewModels"
+             x:DataType="viewmodel:ShiftsystemViewModel"
+             x:Class="ShiftComparingUI.Views.Shiftsystems.AllShiftsystemsView"
+             Title="Shiftsystems">
+    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto,*"
+          RowSpacing="10"
+          Padding="10">
+        <Label Grid.Column="0" Grid.Row="0"
+               Text="All Shiftsystems:"
+               FontSize="22"/>
+        <Button Grid.Column="1" Grid.Row="0"
+                BackgroundColor="LimeGreen"
+                Text="Add"
+                FontSize="22"/>
         
-    </ContentPage.Content>
+        <CollectionView Grid.Column="0" Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="Aqua"
+                        ItemsSource="{Binding AllShiftsystems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:ShiftsystemModel">
+                    <Grid>
+                        <Frame>
+                            <Grid ColumnDefinitions="*,*">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}"/>
+                                    <Label Text="{Binding Description}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+        
+    </Grid>
 </ContentPage>
