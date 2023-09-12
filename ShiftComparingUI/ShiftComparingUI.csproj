@@ -28,6 +28,8 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     </PropertyGroup>
 
     <ItemGroup>
@@ -52,23 +54,8 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0"/>
     </ItemGroup>
 
-
-
     <ItemGroup>
-      <MauiXaml Update="Views\Persons\AllPersonsView.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Views\Persons\AllPersonsView.xaml.cs">
-        <DependentUpon>AllPersonsView.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="Views\Persons\AllPersonsView.xaml" />
+      <Folder Include="Views\" />
     </ItemGroup>
 
 </Project>
