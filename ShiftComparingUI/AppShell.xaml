@@ -14,7 +14,8 @@
     </FlyoutItem>
     <FlyoutItem Title="Shiftsystems">
         <ShellContent
-            ContentTemplate="{DataTemplate shiftsystems:AllShiftsystemsView}"/>
+            ContentTemplate="{DataTemplate shiftsystems:AllShiftsystemsView}"
+            Route="AllShiftsystemsView"/>
     </FlyoutItem>
     <FlyoutItem Title="Comparing Tables">
         <ShellContent

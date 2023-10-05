@@ -2,35 +2,47 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:ShiftComparingUI.ShiftComparingLibrary.Models"
-             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ShiftComparingLibrary.ViewModels"
+             xmlns:model="clr-namespace:ShiftComparingUI.Models"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels"
              x:DataType="viewmodel:ShiftsystemViewModel"
              x:Class="ShiftComparingUI.Views.Shiftsystems.AllShiftsystemsView"
              Title="Shiftsystems">
     <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto,*"
           RowSpacing="10"
           Padding="10">
-        <Label Grid.Column="0" Grid.Row="0"
-               Text="All Shiftsystems:"
-               FontSize="22"/>
-        <Button Grid.Column="1" Grid.Row="0"
-                BackgroundColor="LimeGreen"
-                Text="Add"
-                FontSize="22"/>
+        <Button 
+            Grid.Column="1" Grid.Row="0"
+            Text="Add"
+            Command="{Binding NavigateToAddPageCommand}"
+            BackgroundColor="LimeGreen"
+            FontSize="22"/>
         
         <CollectionView Grid.Column="0" Grid.Row="1"
                         Grid.ColumnSpan="2"
-                        BackgroundColor="Aqua"
-                        ItemsSource="{Binding AllShiftsystems}">
+                        BackgroundColor="Purple"
+                        ItemsSource="{Binding ListOfShiftsystems}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:ShiftsystemModel">
                     <Grid>
                         <Frame>
-                            <Grid ColumnDefinitions="*,*">
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding Name}"/>
-                                    <Label Text="{Binding Description}"/>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout Grid.Column="0" Grid.Row="0">
+                                    <Label Text="{Binding Name}" 
+                                           FontSize="18"/>
+                                    <Label Text="{Binding Description}"
+                                           FontSize="12"/>
                                 </VerticalStackLayout>
+                                <HorizontalStackLayout Grid.Column="1" Grid.Row="0">
+                                    <Button Text="Delete"
+                                            BackgroundColor="Red"
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShiftsystemViewModel}}, Path=DeleteShiftsystemCommand}"/>
+                                    <Button Text="Edit"
+                                            BackgroundColor="Blue"
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShiftsystemViewModel}}, Path=NavigateToEditPageCommand}"
+                                            />
+                                </HorizontalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>

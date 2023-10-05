@@ -1,11 +1,10 @@
-
 using ShiftComparingUI.ViewModels;
 
 namespace ShiftComparingUI.Views.Shiftsystems;
 
-public partial class AllShiftsystemsView : ContentPage
+public partial class EditShiftsystemView : ContentPage
 {
-    public AllShiftsystemsView(ShiftsystemViewModel svm)
+    public EditShiftsystemView(ShiftsystemViewModel svm)
     {
         InitializeComponent();
         BindingContext = svm;

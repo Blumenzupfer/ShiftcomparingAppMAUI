@@ -1,10 +1,13 @@
 using Newtonsoft.Json;
-using ShiftComparingUI.ShiftComparingLibrary.HelperClasses;
+using ShiftComparingUI.HelperClasses;
+using SQLite;
 
-namespace ShiftComparingUI.ShiftComparingLibrary.Models;
+namespace ShiftComparingUI.Models;
 
+[Table("Shiftsystem")]
 public class ShiftsystemModel
 {
+    [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
@@ -26,7 +29,7 @@ public class ShiftsystemModel
         return JsonConvert.SerializeObject(shiftgroupStartdates);
     }
 
-    public static List<ShiftgroupDatetimes> ShiftgroupStartdatesToString(string shiftgroupStartdates)
+    public static List<ShiftgroupDatetimes> ShiftgroupStartdatesToList(string shiftgroupStartdates)
     {
         return JsonConvert.DeserializeObject<List<ShiftgroupDatetimes>>(shiftgroupStartdates);
     }

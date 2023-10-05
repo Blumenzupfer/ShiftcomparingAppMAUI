@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using ShiftComparingUI.DataAccess;
 using ShiftComparingUI.ShiftComparingLibrary.ViewModels;
+using ShiftComparingUI.ViewModels;
 using ShiftComparingUI.Views.Shiftsystems;
 
 namespace ShiftComparingUI;
@@ -16,8 +18,12 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        builder.Services.AddSingleton<AddShiftsystemViewModel>();
+        ShiftsystemDataAccess.CreateShiftsystemTable();
+        builder.Services.AddSingleton<ShiftsystemViewModel>();
+        
         builder.Services.AddSingleton<AddShiftsystemView>();
+        builder.Services.AddSingleton<EditShiftsystemView>();
+        builder.Services.AddSingleton<AllShiftsystemsView>();
 
 #if DEBUG
         builder.Logging.AddDebug();
