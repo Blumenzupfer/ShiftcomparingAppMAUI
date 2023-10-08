@@ -1,4 +1,4 @@
-namespace ShiftComparingUI.ShiftComparingLibrary.DataAccess;
+namespace ShiftComparingUI.DataAccess;
 
 public static class Query
 {
@@ -12,11 +12,10 @@ public static class Query
     
     public const string CreatePersonTable = @"CREATE TABLE IF NOT EXISTS Person (
             Id INTEGER NOT NULL,
-            Firstname TEXT NOT NULL,
-            Lastname TEXT NOT NULL,
-            Nickname TEXT NOT NULL,
-            Shiftsystem INTEGER,
+            Name TEXT NOT NULL,
+            TableName TEXT NOT NULL,
+            ShiftsystemId INTEGER,
             Shiftgroup INTEGER,
-            FOREIGN KEY(Shiftsystem) REFERENCES Shiftsystem(Id),
+            FOREIGN KEY(ShiftsystemId) REFERENCES Shiftsystem(Id),
             PRIMARY KEY(Id AUTOINCREMENT))";
 }

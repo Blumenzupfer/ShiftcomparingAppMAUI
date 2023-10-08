@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels"
+             xmlns:helperClass="clr-namespace:ShiftComparingUI.HelperClasses"
+             x:DataType="viewmodel:PersonsViewModel"
+             x:Class="ShiftComparingUI.Views.Persons.AddPersonView">
+    <VerticalStackLayout>
+        
+        <Label
+            Text="Name:"/>
+        <Entry
+            Text="{Binding Name}"
+            Placeholder="Enter the persons name"/>
+        
+        <Label
+            Text="Shortcut name (max. 5 letters):"/>
+        <Entry
+            Text="{Binding TableName}"
+            Placeholder="Enter a shortcut name"/>
+        
+        <Label
+            Text="Shiftsystem:"/>
+        <CollectionView
+            ItemsSource="{Binding ListOfShiftsystems}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedShiftsystem}"
+            SelectionChangedCommand="{Binding SelectShiftsystemCommand}"
+            MaximumHeightRequest="300">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame>
+                            <Label
+                                Text="{Binding Name}"/>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Label
+            Text="Shiftgroup:"/>
+        <CollectionView Grid.Column="0" Grid.Row="6"
+                        Grid.ColumnSpan="3"
+                        ItemsSource="{Binding ShiftgroupList}"
+                        HeightRequest="365"
+                        BackgroundColor="Pink"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedShiftgroup}"
+                        SelectionChangedCommand="{Binding SelectShiftgroupCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type helperClass:ShiftgroupDatetimes}">
+                    <Grid>
+                        <Frame Padding="5"
+                               Margin="2"
+                               MinimumHeightRequest="70"
+                               MaximumHeightRequest="70">
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
+                                  RowSpacing="2">
+                                <Label Grid.Column="0" Grid.Row="0"
+                                       Text="{Binding Shiftgroup}"
+                                       FontSize="22" FontAttributes="Bold"/>
+                                <Label Grid.Column="0" Grid.Row="1"
+                                       Text="Shiftpattern startdate: "/>
+                                <DatePicker Grid.Column="1" Grid.Row="1"
+                                            Date="{Binding Startdate}"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Button
+            Text="Create new Person"
+            BackgroundColor="LightBlue"
+            Command="{Binding CreatePersonCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

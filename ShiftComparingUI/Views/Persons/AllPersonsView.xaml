@@ -2,26 +2,39 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels"
+             x:DataType="viewmodel:PersonsViewModel"
              x:Class="ShiftComparingUI.Views.Persons.AllPersonsView"
              Title="Persons">
-    <Grid ColumnDefinitions="Auto, Auto, *" RowDefinitions="Auto, Auto, *"
-          ColumnSpacing="10" RowSpacing="10"
-          Padding="10">
-        
-        <Label Grid.Column="0" Grid.Row="0"
-               Text="Here you can see a list of all registered persons.&#10;You can add, edit or delete persons.&#10;Persons are needed to create comparingtables.&#10;You can add multiple persons to multiple comparingtables.&quot;"
-               FontSize="22"/>
-        <Button Grid.Column="1" Grid.Row="0"
-                Text="Add"
-                FontSize="22"
-                BackgroundColor="Green"/>
-        <CollectionView Grid.Column="0" Grid.Row="1"
-                        Grid.ColumnSpan="2">
+    <Grid
+        ColumnDefinitions="*, Auto"
+        RowDefinitions="Auto, Auto, *">
+        <Button
+            Grid.Column="1" Grid.Row="0"
+            Text="Add"
+            BackgroundColor="Green"
+            Command="{Binding NavigateToAddPersonPageCommand}"/>
+        <CollectionView
+            Grid.Column="0" Grid.Row="1"
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding ListOfPersons}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
+                <DataTemplate>
                     <Grid>
                         <Frame>
-                            <Label Text="Hello"></Label>
+                            <Grid
+                                ColumnDefinitions="Auto, *, Auto">
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding Name}"/>
+                                <Button
+                                    Grid.Column="2"
+                                    Text="Delete"
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PersonsViewModel}}, Path=DeletePersonCommand}"
+                                    CommandParameter="{Binding .}"/>
+                                
+                            </Grid>
                         </Frame>
                     </Grid>
                 </DataTemplate>

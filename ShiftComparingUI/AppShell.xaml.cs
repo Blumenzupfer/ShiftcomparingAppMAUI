@@ -1,4 +1,5 @@
-﻿using ShiftComparingUI.Views.Shiftsystems;
+﻿using ShiftComparingUI.Views.Persons;
+using ShiftComparingUI.Views.Shiftsystems;
 
 namespace ShiftComparingUI;
 
@@ -9,6 +10,7 @@ public partial class AppShell : Shell
         InitializeComponent();
         Routing.RegisterRoute(nameof(AddShiftsystemView), typeof(AddShiftsystemView));
         Routing.RegisterRoute(nameof(EditShiftsystemView), typeof(EditShiftsystemView));
-        Routing.RegisterRoute(nameof(AllShiftsystemsView), typeof(AllShiftsystemsView));
+
+        Routing.RegisterRoute(nameof(AddPersonView), typeof(AddPersonView));
     }
 }

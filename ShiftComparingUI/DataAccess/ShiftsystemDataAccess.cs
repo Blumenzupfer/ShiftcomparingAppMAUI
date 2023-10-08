@@ -1,7 +1,4 @@
-using System.Data;
 using ShiftComparingUI.Models;
-using ShiftComparingUI.ShiftComparingLibrary.DataAccess;
-using ShiftComparingUI.ShiftComparingLibrary.Models;
 using SQLite;
 
 namespace ShiftComparingUI.DataAccess;
@@ -46,7 +43,9 @@ public static class ShiftsystemDataAccess
     public static List<ShiftsystemModel> GetAllShiftsystems()
     {
         var connection = new SQLiteConnection(DbPath);
-        return connection.Query<ShiftsystemModel>("SELECT * FROM Shiftsystem").ToList();
+        var shiftsystems = connection.Query<ShiftsystemModel>("SELECT * FROM Shiftsystem").ToList();
+        connection.Close();
+        return shiftsystems;
     }
 
     

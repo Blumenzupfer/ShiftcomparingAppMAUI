@@ -2,9 +2,9 @@ using ShiftComparingUI.ViewModels;
 
 namespace ShiftComparingUI.Views.Persons;
 
-public partial class AllPersonsView : ContentPage
+public partial class AddPersonView : ContentPage
 {
-    public AllPersonsView(PersonsViewModel pvm)
+    public AddPersonView(PersonsViewModel pvm)
     {
         InitializeComponent();
         BindingContext = pvm;
