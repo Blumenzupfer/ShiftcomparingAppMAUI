@@ -5,21 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ShiftComparingUI.Views.Persons"
     xmlns:shiftsystems="clr-namespace:ShiftComparingUI.Views.Shiftsystems"
-    xmlns:comparingTables="clr-namespace:ShiftComparingUI.Views.ComparingTables"
-    FlyoutBehavior="Locked" FlyoutBackgroundColor="Orange" Padding="10">
+    xmlns:comparingTables="clr-namespace:ShiftComparingUI.Views.ComparingTables">
 
-    <FlyoutItem Title="Persons">
-        <ShellContent
-            ContentTemplate="{DataTemplate views:AllPersonsView}"/>
-    </FlyoutItem>
-    <FlyoutItem Title="Shiftsystems">
-        <ShellContent
-            ContentTemplate="{DataTemplate shiftsystems:AllShiftsystemsView}"
-            Route="AllShiftsystemsView"/>
-    </FlyoutItem>
-    <FlyoutItem Title="Comparing Tables">
-        <ShellContent
-            ContentTemplate="{DataTemplate comparingTables:AllComparingTablesView}"/>
-    </FlyoutItem>
+    <TabBar>
+        
+        <Tab 
+            Title="Persons"
+            Icon="persons_icon.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:AllPersonsView}"
+                Route="AllPersonsView"/>
+        </Tab>
+        <Tab 
+            Title="Shiftsystems"
+            Icon="shiftsystems_icon.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate shiftsystems:AllShiftsystemsView}"
+                Route="AllShiftsystemsView"/>
+        </Tab>
+        <Tab 
+            Title="Comparing Tables"
+            Icon="comparingtable_icon.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate comparingTables:AllComparingTablesView}"
+                Route="AllComparingTablesView"/>
+        </Tab>
+    </TabBar>
 
 </Shell>

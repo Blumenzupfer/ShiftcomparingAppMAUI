@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using ShiftComparingUI.DataAccess;
 using ShiftComparingUI.ViewModels;
+using ShiftComparingUI.ViewModels.Persons;
+using ShiftComparingUI.ViewModels.ComparingTable;
+using ShiftComparingUI.Views.ComparingTables;
 using ShiftComparingUI.Views.Persons;
 using ShiftComparingUI.Views.Shiftsystems;
 
@@ -20,16 +23,29 @@ public static class MauiProgram
 
         ShiftsystemDataAccess.CreateShiftsystemTable();
         PersonDataAccess.CreatePersonTable();
+        ComparingTableDataAccess.CreateComparingTableTable();
+        ComparingTableDataAccess.CreateReferenceTableTable();
         
         builder.Services.AddSingleton<ShiftsystemViewModel>();
-        builder.Services.AddSingleton<PersonsViewModel>();
         
+        builder.Services.AddTransient<PersonsViewModel>();
+        builder.Services.AddTransient<AddPersonViewModel>();
+        
+        builder.Services.AddTransient<ComparingTableViewModel>();
+        builder.Services.AddTransient<AddComparingTableViewModel>();
+        builder.Services.AddTransient<EditComparingTableViewModel>();
+        
+        builder.Services.AddSingleton<AllShiftsystemsView>();
         builder.Services.AddSingleton<AddShiftsystemView>();
         builder.Services.AddSingleton<EditShiftsystemView>();
-        builder.Services.AddSingleton<AllShiftsystemsView>();
 
-        builder.Services.AddSingleton<AddPersonView>();
-        builder.Services.AddSingleton<AllPersonsView>();
+        builder.Services.AddTransient<AllPersonsView>();
+        builder.Services.AddTransient<AddPersonView>();
+
+        builder.Services.AddTransient<AllComparingTablesView>();
+        builder.Services.AddTransient<AddComparingTableView>();
+        builder.Services.AddTransient<EditComparingTableView>();
+
 
 #if DEBUG
         builder.Logging.AddDebug();

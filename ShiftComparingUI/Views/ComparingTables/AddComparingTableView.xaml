@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels.ComparingTable"
+             x:DataType="viewmodel:AddComparingTableViewModel"
+             x:Class="ShiftComparingUI.Views.ComparingTables.AddComparingTableView">
+    
+    <VerticalStackLayout>
+        <Label
+            Text="Name"/>
+        <Entry
+            Text="{Binding Name}"
+            Placeholder="Enter comparing table name"/>
+        <Label
+            Text="Calender year"/>
+        <Picker
+            Title="Pick a year"
+            ItemsSource="{Binding YearList}"
+            SelectedItem="{Binding Year}"/>
+        <Label
+            Text="Select persons to be compared"/>
+        <CollectionView
+            MaximumHeightRequest="200"
+            ItemsSource="{Binding ListOfPersons}"
+            SelectionMode="Multiple"
+            SelectedItems="{Binding SelectedObjects, Mode=TwoWay}"
+            SelectionChangedCommand="{Binding SelectedPersonsChangedCommand}"
+            BackgroundColor="Yellow">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame>
+                            <Label
+                                Text="{Binding .Name}"/>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Text="Create Comparing Table"
+            Command="{Binding CreateNewComparingTableCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

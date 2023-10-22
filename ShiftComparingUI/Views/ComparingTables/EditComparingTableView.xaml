@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels.ComparingTable"
+             x:DataType="viewmodel:EditComparingTableViewModel"
+             x:Class="ShiftComparingUI.Views.ComparingTables.EditComparingTableView">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+                Text="Name"/>
+            <Entry
+                Text="{Binding Name}"
+                Placeholder="Enter comparing table name"/>
+            <Label
+                Text="Calender year"/>
+            <Picker
+                Title="Pick a year"
+                ItemsSource="{Binding YearList}"
+                SelectedItem="{Binding Year}"/>
+            <Label
+                Text="Select persons to be compared"/>
+            <Grid
+                RowDefinitions="Auto, Auto"
+                ColumnDefinitions="*, *">
+                
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="Persons:"/>
+                <CollectionView
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    MaximumHeightRequest="300"
+                    ItemsSource="{Binding ListOfPersons}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedPerson}"
+                    SelectionChangedCommand="{Binding SelectedPersonChangedCommand}"
+                    BackgroundColor="Yellow">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Frame>
+                                    <Label
+                                        Text="{Binding .Name}"/>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text="Selected Persons:"/>
+                <CollectionView
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    MaximumHeightRequest="300"
+                    ItemsSource="{Binding SelectedPersons}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding UnselectedPerson}"
+                    SelectionChangedCommand="{Binding UnselectedPersonChangedCommand}"
+                    BackgroundColor="Green">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Frame>
+                                    <Label
+                                        Text="{Binding .Name}"/>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <Button
+                Text="Create Comparing Table"
+                Command="{Binding UpdateComparingTableCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

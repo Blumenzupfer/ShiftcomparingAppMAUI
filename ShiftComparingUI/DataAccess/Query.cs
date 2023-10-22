@@ -18,4 +18,18 @@ public static class Query
             Shiftgroup INTEGER,
             FOREIGN KEY(ShiftsystemId) REFERENCES Shiftsystem(Id),
             PRIMARY KEY(Id AUTOINCREMENT))";
+
+    public const string CreateComparingTableTable = @"CREATE TABLE IF NOT EXISTS ComparingTable (
+            Id INTEGER NOT NULL,
+            Name TEXT NOT NULL,
+            Year INTEGER NOT NULL,
+            PRIMARY KEY(Id AUTOINCREMENT))";
+
+    public const string CreateReferenceTableTable = @"CREATE TABLE IF NOT EXISTS ReferenceTable(
+            Id INTEGER NOT NULL,
+            ComparingTableId INTEGER NOT NULL,
+            PersonId INTEGER NOT NULL,
+            FOREIGN KEY(ComparingTableId) REFERENCES ComparingTable(Id),
+            FOREIGN KEY(PersonId) REFERENCES Person(Id),
+            PRIMARY KEY(Id AUTOINCREMENT))";
 }

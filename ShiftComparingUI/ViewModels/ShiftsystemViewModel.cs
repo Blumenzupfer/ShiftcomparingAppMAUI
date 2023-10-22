@@ -1,9 +1,11 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using ShiftComparingUI.HelperClasses;
 using ShiftComparingUI.Models;
 using ShiftComparingUI.DataAccess;
+using ShiftComparingUI.Messages;
 using ShiftComparingUI.Views.Shiftsystems;
 
 namespace ShiftComparingUI.ViewModels;
@@ -21,6 +23,7 @@ public partial class ShiftsystemViewModel : ObservableObject
     [ObservableProperty] private bool _isEmptyShiftpattern;
     [ObservableProperty] private ObservableCollection<ShiftsystemModel> _listOfShiftsystems;
     private int _shiftsystemId;
+    
 
     public ShiftsystemViewModel()
     {
@@ -139,6 +142,7 @@ public partial class ShiftsystemViewModel : ObservableObject
         int id = ShiftsystemDataAccess.AddNewShiftsystem(newShiftsystem);
         newShiftsystem.Id = id;
         ListOfShiftsystems.Add(newShiftsystem);
+        WeakReferenceMessenger.Default.Send(new ViewModelMessage(ListOfShiftsystems.ToList()));
         
         ClearDataFields();
     }
@@ -202,6 +206,7 @@ public partial class ShiftsystemViewModel : ObservableObject
         var shiftsystem = ListOfShiftsystems.Single(x => x.Id == _shiftsystemId);
         ListOfShiftsystems.Remove(shiftsystem);
         ListOfShiftsystems.Add(updatedShiftsystem);
+        
         ClearDataFields();
 
         await Shell.Current.GoToAsync("..");

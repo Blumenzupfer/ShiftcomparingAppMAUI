@@ -1,4 +1,4 @@
-using ShiftComparingUI.ViewModels;
+using ShiftComparingUI.ViewModels.Persons;
 
 namespace ShiftComparingUI.Views.Persons;
 
