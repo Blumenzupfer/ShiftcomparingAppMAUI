@@ -1,11 +1,9 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using ShiftComparingUI.HelperClasses;
 using ShiftComparingUI.Models;
 using ShiftComparingUI.DataAccess;
-using ShiftComparingUI.Messages;
 using ShiftComparingUI.Views.Shiftsystems;
 
 namespace ShiftComparingUI.ViewModels;
@@ -142,7 +140,6 @@ public partial class ShiftsystemViewModel : ObservableObject
         int id = ShiftsystemDataAccess.AddNewShiftsystem(newShiftsystem);
         newShiftsystem.Id = id;
         ListOfShiftsystems.Add(newShiftsystem);
-        WeakReferenceMessenger.Default.Send(new ViewModelMessage(ListOfShiftsystems.ToList()));
         
         ClearDataFields();
     }

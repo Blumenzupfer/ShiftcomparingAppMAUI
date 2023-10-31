@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels.ComparingTable"
+             x:DataType="viewmodel:CreateCsvViewModel"
+             x:Class="ShiftComparingUI.Views.ComparingTables.CreateCsvView"
+             Title="Excel File Creator">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+                Text="{Binding Name}"/>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Calendar for "/>
+                <Label
+                    Text="{Binding Year}"/>
+            </HorizontalStackLayout>
+            <Label
+                Text="Enter Worksheet Name:"/>
+            <Entry
+                Text="{Binding WorksheetName}"
+                Placeholder="Worksheet Name"/>
+            <Label
+                Text="{Binding Directory}"/>
+            <Button
+                Text="Choose Folder"
+                Command="{Binding AddFolderPathCommand}"/>
+            <Button
+                Text="Create CSV File"
+                Command="{Binding CreateCsvFileCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

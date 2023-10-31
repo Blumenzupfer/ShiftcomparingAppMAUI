@@ -48,5 +48,14 @@ public static class ShiftsystemDataAccess
         return shiftsystems;
     }
 
+    public static ShiftsystemModel GetOneShiftsystem(int id)
+    {
+        var connection = new SQLiteConnection(DbPath);
+        var shiftsystem = connection.Query<ShiftsystemModel>($"SELECT * FROM Shiftsystem WHERE Id = {id}");
+        connection.Close();
+        Console.WriteLine("data access successful");
+        return shiftsystem.Single();
+    }
+
     
 }

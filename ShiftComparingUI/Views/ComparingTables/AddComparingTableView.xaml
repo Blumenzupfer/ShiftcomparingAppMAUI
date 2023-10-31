@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels.ComparingTable"
              x:DataType="viewmodel:AddComparingTableViewModel"
-             x:Class="ShiftComparingUI.Views.ComparingTables.AddComparingTableView">
+             x:Class="ShiftComparingUI.Views.ComparingTables.AddComparingTableView"
+             Title="Create New Comparing Table">
     
     <VerticalStackLayout>
         <Label

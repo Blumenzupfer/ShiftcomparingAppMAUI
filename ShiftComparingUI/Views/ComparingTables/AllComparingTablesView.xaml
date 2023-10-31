@@ -5,7 +5,8 @@
              xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels.ComparingTable"
              xmlns:model="clr-namespace:ShiftComparingUI.Models"
              x:DataType="viewmodel:ComparingTableViewModel"
-             x:Class="ShiftComparingUI.Views.ComparingTables.AllComparingTablesView">
+             x:Class="ShiftComparingUI.Views.ComparingTables.AllComparingTablesView"
+             Title="Comparing Tables">
     <Grid
         ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
         
@@ -24,28 +25,33 @@
                     <Grid>
                         <Frame>
                             <Grid
-                                ColumnDefinitions="Auto, *, Auto, Auto">
+                                ColumnDefinitions="Auto, *, Auto, Auto, Auto">
                                 <Label
                                     Grid.Column="0"
                                     Text="{Binding Name}"/>
                                 <Button
-                                    Grid.Column="3"
-                                    Text="Delete"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ComparingTableViewModel}}, Path=DeleteComparingTableCommand}"
-                                    CommandParameter="{Binding .}"
-                                    BackgroundColor="Red"/>
-                                <Button
                                     Grid.Column="2"
+                                    Text="CSV"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ComparingTableViewModel}}, Path=NavigateToCreateAsCsvViewCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="LemonChiffon"/>
+                                <Button
+                                    Grid.Column="3"
                                     Text="Edit"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ComparingTableViewModel}}, Path=EditComparingTableCommand}"
                                     CommandParameter="{Binding .}"
                                     BackgroundColor="Aquamarine"/>
+                                <Button
+                                    Grid.Column="4"
+                                    Text="Delete"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ComparingTableViewModel}}, Path=DeleteComparingTableCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Red"/>
                             </Grid>
                         </Frame>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
     </Grid>
 </ContentPage>

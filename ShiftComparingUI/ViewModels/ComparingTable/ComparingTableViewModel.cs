@@ -28,6 +28,16 @@ public partial class ComparingTableViewModel : ObservableObject, IQueryAttributa
     }
 
     [RelayCommand]
+    async Task NavigateToCreateAsCsvView(ComparingTableModel comparingTable)
+    {
+        IDictionary<string, object> navigationData = new Dictionary<string, object>()
+        {
+            { "comparingTable", comparingTable }
+        };
+        await Shell.Current.GoToAsync(nameof(CreateCsvView), navigationData);
+    }
+
+    [RelayCommand]
     private void DeleteComparingTable(ComparingTableModel comparingTable)
     {
         ComparingTableDataAccess.DeleteComparingTable(comparingTable.Id);

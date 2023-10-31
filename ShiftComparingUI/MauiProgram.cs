@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using ShiftComparingUI.DataAccess;
 using ShiftComparingUI.ViewModels;
 using ShiftComparingUI.ViewModels.Persons;
 using ShiftComparingUI.ViewModels.ComparingTable;
+using ShiftComparingUI.Views;
 using ShiftComparingUI.Views.ComparingTables;
 using ShiftComparingUI.Views.Persons;
 using ShiftComparingUI.Views.Shiftsystems;
@@ -15,6 +17,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder.UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -34,6 +37,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ComparingTableViewModel>();
         builder.Services.AddTransient<AddComparingTableViewModel>();
         builder.Services.AddTransient<EditComparingTableViewModel>();
+        builder.Services.AddTransient<CreateCsvViewModel>();
         
         builder.Services.AddSingleton<AllShiftsystemsView>();
         builder.Services.AddSingleton<AddShiftsystemView>();
@@ -45,6 +49,7 @@ public static class MauiProgram
         builder.Services.AddTransient<AllComparingTablesView>();
         builder.Services.AddTransient<AddComparingTableView>();
         builder.Services.AddTransient<EditComparingTableView>();
+        builder.Services.AddTransient<CreateCsvView>();
 
 
 #if DEBUG

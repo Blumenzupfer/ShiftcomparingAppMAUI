@@ -9,6 +9,7 @@ public partial class AppShell : Shell
     public AppShell()
     {
         InitializeComponent();
+        
         Routing.RegisterRoute(nameof(AddShiftsystemView), typeof(AddShiftsystemView));
         Routing.RegisterRoute(nameof(EditShiftsystemView), typeof(EditShiftsystemView));
 
@@ -16,5 +17,6 @@ public partial class AppShell : Shell
         
         Routing.RegisterRoute(nameof(AddComparingTableView), typeof(AddComparingTableView));
         Routing.RegisterRoute(nameof(EditComparingTableView), typeof(EditComparingTableView));
+        Routing.RegisterRoute(nameof(CreateCsvView), typeof(CreateCsvView));
     }
 }
