@@ -1,0 +1,63 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+    <Style TargetType="Button" x:Key="BaseButton">
+        <Setter Property="FontFamily" Value="RobotoRegular"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextColor" Value="{StaticResource AccentColorLight}"/>
+    </Style>
+    
+    <Style TargetType="Button" x:Key="AddButton" BasedOn="{StaticResource BaseButton}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource AddColorLight}, Dark={StaticResource AddColorDark}}"/>
+        <Setter Property="CornerRadius" Value="8"/>
+    </Style>
+    
+    <Style TargetType="ImageButton" x:Key="DeleteButton">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource DeleteColorLight}, Dark={StaticResource DeleteColorDark}}"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0 5 0 5"/>
+        <Setter Property="WidthRequest" Value="36"/>
+        <Setter Property="HeightRequest" Value="36"/>
+        <Setter Property="Aspect" Value="Center"/>
+    </Style>
+    
+    <Style TargetType="Frame">
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource AccentColorLight}, Dark={StaticResource AccentColorDark}}"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="HasShadow" Value="False"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource HighlightColorLight}, Dark={StaticResource HighlightColorDark}}"></Setter>
+        <Setter Property="Padding" Value="5 5 5 15"></Setter>
+    </Style>
+    
+    <Style TargetType="Grid" x:Key="BaseGrid">
+        <Setter Property="RowSpacing" Value="5"/>
+        <Setter Property="Padding" Value="2"></Setter>
+    </Style>
+    
+    <Style TargetType="Grid" x:Key="CollectionViewGrid" BasedOn="{StaticResource BaseGrid}">
+        <Setter Property="VerticalOptions" Value="Center"></Setter>
+    </Style>
+    
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource AccentColorLight}, Dark={StaticResource AccentColorDark}}"/>
+        <Setter Property="FontFamily" Value="RobotoRegular"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}" />
+        <Setter Property="Padding" Value="10"/>
+    </Style>
+    
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
+        <Setter Property="Shell.NavBarHasShadow" Value="False" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource SelectionColor}, Dark={StaticResource SelectionColor}}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource SelectionColor}, Dark={StaticResource SelectionColor}}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource AccentColorLight}, Dark={StaticResource AccentColorDark}}" />
+    </Style>
+    
+</ResourceDictionary>

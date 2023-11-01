@@ -8,13 +8,12 @@
              x:Class="ShiftComparingUI.Views.Persons.AllPersonsView"
              Title="Persons">
     <Grid
-        ColumnDefinitions="*, Auto"
-        RowDefinitions="Auto, Auto, *">
-        <Button
-            Grid.Column="1" Grid.Row="0"
-            Text="Add"
-            BackgroundColor="Green"
-            Command="{Binding NavigateToAddPersonPageCommand}"/>
+        ColumnDefinitions="*, *,Auto"
+        RowDefinitions="Auto, *, Auto, 70"
+        Style="{StaticResource BaseGrid}">
+        <Label
+            Grid.Column="0" Grid.Row="0"
+            Text="Registered Persons"/>
         <CollectionView
             Grid.Column="0" Grid.Row="1"
             Grid.ColumnSpan="2"
@@ -22,17 +21,20 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate
                     x:DataType="{x:Type model:PersonModel}">
-                    <Grid>
+                    <Grid
+                        Style="{StaticResource BaseGrid}">
                         <Frame>
                             <Grid
-                                ColumnDefinitions="Auto, *, Auto">
+                                ColumnDefinitions="Auto, *, Auto"
+                                RowDefinitions="Auto"
+                                Style="{StaticResource CollectionViewGrid}">
                                 <Label
                                     Grid.Column="0"
                                     Text="{Binding .Name}"/>
-                                <Button
+                                <ImageButton
                                     Grid.Column="2"
-                                    Text="Delete"
-                                    BackgroundColor="Red"
+                                    Style="{StaticResource DeleteButton}"
+                                    Source="trashcan_icon.png"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PersonsViewModel}}, Path=DeletePersonCommand}"
                                     CommandParameter="{Binding .}"/>
                                 
@@ -43,5 +45,10 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         
+        <Button
+            Grid.Column="1" Grid.Row="2"
+            Style="{StaticResource AddButton}"
+            Text="Add New Person"
+            Command="{Binding NavigateToAddPersonPageCommand}"/>
     </Grid>
 </ContentPage>

@@ -17,6 +17,21 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
+    
+    <Color x:Key="BackgroundColorDark">#011638</Color>
+    <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
+    <Color x:Key="HighlightColorDark">#364156</Color>
+    <Color x:Key="HighlightColorLight">#A4DEF9</Color>
+    <Color x:Key="AccentColorDark">#ADF5FF</Color>
+    <Color x:Key="AccentColorLight">#000000</Color>
+    <Color x:Key="DeleteColorDark">#D62839</Color>
+    <Color x:Key="DeleteColorLight">#D62839</Color>
+    <Color x:Key="AddColorDark">#3F6634</Color>
+    <Color x:Key="AddColorLight">#5FDA70</Color>
+    <Color x:Key="EditColorDark">#0496FF</Color>
+    <Color x:Key="EditColorLight">#0496FF</Color>
+    <Color x:Key="SelectionColor">#648DE5</Color>
+    
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>

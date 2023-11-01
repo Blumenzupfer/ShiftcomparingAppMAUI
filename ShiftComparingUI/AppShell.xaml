@@ -10,7 +10,7 @@
 
     <TabBar>
         
-        <Tab 
+        <Tab
             Title="Persons"
             Icon="persons_icon.png">
             <ShellContent
