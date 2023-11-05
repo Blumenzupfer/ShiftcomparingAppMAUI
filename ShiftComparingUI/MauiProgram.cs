@@ -33,6 +33,7 @@ public static class MauiProgram
         
         builder.Services.AddTransient<ShiftsystemViewModel>();
         builder.Services.AddTransient<AddShiftsystemViewModel>();
+        builder.Services.AddTransient<EditShiftsystemViewModel>();
         
         builder.Services.AddTransient<PersonsViewModel>();
         builder.Services.AddTransient<AddPersonViewModel>();
@@ -42,9 +43,9 @@ public static class MauiProgram
         builder.Services.AddTransient<EditComparingTableViewModel>();
         builder.Services.AddTransient<CreateCsvViewModel>();
         
-        builder.Services.AddSingleton<AllShiftsystemsView>();
+        builder.Services.AddTransient<AllShiftsystemsView>();
         builder.Services.AddTransient<AddShiftsystemView>();
-        builder.Services.AddSingleton<EditShiftsystemView>();
+        builder.Services.AddTransient<EditShiftsystemView>();
 
         builder.Services.AddTransient<AllPersonsView>();
         builder.Services.AddTransient<AddPersonView>();
