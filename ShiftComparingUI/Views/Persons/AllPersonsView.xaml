@@ -7,48 +7,47 @@
              x:DataType="viewmodel:PersonsViewModel"
              x:Class="ShiftComparingUI.Views.Persons.AllPersonsView"
              Title="Persons">
-    <Grid
-        ColumnDefinitions="*, *,Auto"
-        RowDefinitions="Auto, *, Auto, 70"
-        Style="{StaticResource BaseGrid}">
+    <FlexLayout
+        Direction="Column"
+        AlignItems="Start"
+        JustifyContent="SpaceEvenly">
         <Label
-            Grid.Column="0" Grid.Row="0"
             Text="Registered Persons"/>
-        <CollectionView
-            Grid.Column="0" Grid.Row="1"
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding ListOfPersons}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate
-                    x:DataType="{x:Type model:PersonModel}">
-                    <Grid
-                        Style="{StaticResource BaseGrid}">
-                        <Frame>
-                            <Grid
-                                ColumnDefinitions="Auto, *, Auto"
-                                RowDefinitions="Auto"
-                                Style="{StaticResource CollectionViewGrid}">
-                                <Label
-                                    Grid.Column="0"
-                                    Text="{Binding .Name}"/>
-                                <ImageButton
-                                    Grid.Column="2"
-                                    Style="{StaticResource DeleteButton}"
-                                    Source="trashcan_icon.png"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PersonsViewModel}}, Path=DeletePersonCommand}"
-                                    CommandParameter="{Binding .}"/>
-                                
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
+        <FlexLayout 
+            FlexLayout.Grow="1">
+            <CollectionView
+                FlexLayout.Grow="1"
+                ItemsSource="{Binding ListOfPersons}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="{x:Type model:PersonModel}">
+                        <Grid
+                            Style="{StaticResource BaseGrid}">
+                            <Frame>
+                                <Grid
+                                    ColumnDefinitions="Auto, *, Auto"
+                                    RowDefinitions="Auto"
+                                    Style="{StaticResource CollectionViewGrid}">
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding .Name}"/>
+                                    <ImageButton
+                                        Grid.Column="2"
+                                        Style="{StaticResource DeleteButton}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PersonsViewModel}}, Path=DeletePersonCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                    
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </FlexLayout>
         <Button
-            Grid.Column="1" Grid.Row="2"
+            FlexLayout.AlignSelf="End"
             Style="{StaticResource AddButton}"
             Text="Add New Person"
             Command="{Binding NavigateToAddPersonPageCommand}"/>
-    </Grid>
+    </FlexLayout>
 </ContentPage>

@@ -2,162 +2,176 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels"
+             xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels.Shiftsystems"
              xmlns:helperClass="clr-namespace:ShiftComparingUI.HelperClasses"
-             x:DataType="viewmodel:ShiftsystemViewModel"
+             x:DataType="viewmodel:AddShiftsystemViewModel"
              x:Class="ShiftComparingUI.Views.Shiftsystems.AddShiftsystemView"
-             Title="Create new Shiftsystem">
-    <ScrollView>
-        <Grid ColumnDefinitions="*, *, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
-              ColumnSpacing="5" RowSpacing="5"
-              Padding="5">
+             Title="Add New Shiftsystem">
+    <FlexLayout
+        Direction="Column"
+        AlignItems="Start"
+        JustifyContent="SpaceEvenly">
+            <Label
+                Text="Name: "/>
+            <Entry 
+                FlexLayout.AlignSelf="Stretch"
+               Placeholder="Enter the name of the shiftsystem"
+               Text="{Binding Name}"/>
+            <Label
+                Style="{StaticResource WarningLabel}"
+                Text="Shiftsystem name is missing / empty"
+                IsVisible="{Binding IsEmptyName}"/>
             
-            <Grid Grid.Column="0" Grid.Row="0"
-                  Grid.ColumnSpan="3"
-                  ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto"
-                  ColumnSpacing="5" RowSpacing="5">
-                
-                <Label Grid.Column="0" Grid.Row="0"
-                       Text="Name: "/>
-                <Entry Grid.Column="1" Grid.Row="0"
-                       Placeholder="Enter the name of the shiftsystem"
-                       Text="{Binding Name}"/>
-                <Label Grid.Column="0" Grid.Row="1"
-                       Grid.ColumnSpan="2"
-                       Text="Shiftsystem name is missing / empty"
-                       TextColor="Red"
-                       IsVisible="{Binding IsEmptyName}"/>
-                       
-                <Label Grid.Column="0" Grid.Row="2"
-                       Text="Description: "/>
-                <Entry Grid.Column="1" Grid.Row="2"
-                       Placeholder="Enter a description for the shiftsystem"
-                       Text="{Binding Description}"/>
-                <Label Grid.Column="0" Grid.Row="3"
-                       Grid.ColumnSpan="2"
-                       Text="Shiftsystem description is missing / empty"
-                       TextColor="Red"
-                       IsVisible="{Binding IsEmptyDescription}"/>
-            </Grid>
+            <Label 
+                Text="Description: "/>
+            <Entry 
+                FlexLayout.AlignSelf="Stretch"
+               Placeholder="Enter a description for the shiftsystem"
+               Text="{Binding Description}"/>
+            <Label
+                Style="{StaticResource WarningLabel}"
+                Text="Shiftsystem description is missing / empty"
+                IsVisible="{Binding IsEmptyDescription}"/>
             
-            <Grid Grid.Column="0" Grid.Row="1"
-                  Grid.ColumnSpan="3"
-                  ColumnDefinitions="*, *, Auto" RowDefinitions="Auto, Auto, Auto"
-                  ColumnSpacing="5" RowSpacing="5">
-                   <Label Grid.Column="0" Grid.Row="0"
-                          Text="Shiftpattern: "/>
-                   
-                   <CollectionView Grid.Column="0" Grid.Row="1"
-                                   ItemsSource="{Binding Shiftpattern}"
-                                   MaximumHeightRequest="300">
-                       <CollectionView.ItemTemplate>
-                           <DataTemplate x:DataType="{x:Type x:String}">
-                               <Grid>
-                                   <Frame MaximumHeightRequest="30"
-                                          Padding="2">
-                                          <Grid
-                                              Grid.ColumnDefinitions="Auto, *, Auto"
-                                              Grid.RowDefinitions="*"
-                                              Padding="0"
-                                              Margin="0"
-                                              RowSpacing="0">
-                                                 <Label
-                                                     Grid.Column="0" Grid.Row="0"
-                                                     Text="{Binding .}"
-                                                     FontSize="16"/>
-                                                 <Button
-                                                     Grid.Column="2" Grid.Row="0"
-                                                     Text="Delete"
-                                                     FontSize="14"
-                                                     MaximumHeightRequest="25"
-                                                     BackgroundColor="Red"
-                                                     CommandParameter="{Binding .}"
-                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShiftsystemViewModel}}, Path=DeleteShiftpatternEntryCommand}"/>
-                                          </Grid>
-                                   </Frame>
-                               </Grid>
-                           </DataTemplate>
-                       </CollectionView.ItemTemplate>
-                   </CollectionView>
-                   <Grid Grid.Column="1" Grid.Row="1" 
-                         ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto"
-                         ColumnSpacing="2" RowSpacing="2">
-                          <Button Grid.Column="0" Grid.Row="0"
-                                  Text="F12"
-                                  Command="{Binding AddF12Command}"/>
-                          <Button Grid.Column="1" Grid.Row="0"
-                                  Text="N12"
-                                  Command="{Binding AddN12Command}"/>
-                          <Button Grid.Column="0" Grid.Row="1"
-                                  Text="F"
-                                  Command="{Binding AddFCommand}"/>
-                          <Button Grid.Column="1" Grid.Row="1"
-                                  Text="S"
-                                  Command="{Binding AddSCommand}"/>
-                          <Button Grid.Column="0" Grid.Row="2"
-                                  Text="N"
-                                  Command="{Binding AddNCommand}"/>
-                          <Button Grid.Column="1" Grid.Row="2"
-                                  Text="-"
-                                  Command="{Binding AddMinusCommand}"/>
-                   </Grid>
-                   <Label Grid.Column="0" Grid.Row="2"
-                          Grid.ColumnSpan="2"
-                          Text="The shiftpattern doesn't match the minimum amount of days. Check the pattern."
-                          TextColor="Red"
-                          IsVisible="{Binding IsEmptyShiftpattern}"/>
-            </Grid>
+            <Label
+                Text="Shiftpattern: "/>
+            <FlexLayout
+                FlexLayout.Grow="1"
+                Wrap="Wrap"
+                Direction="Row"
+                JustifyContent="SpaceEvenly">
+                <CollectionView
+                    ItemsUpdatingScrollMode="KeepLastItemInView"
+                    FlexLayout.Basis="60%"
+                    ItemsSource="{Binding Shiftpattern}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type x:String}">
+                            <Grid
+                                Style="{StaticResource BaseGrid}">
+                                <Frame
+                                    Padding="2">
+                                    <Grid
+                                        ColumnDefinitions="Auto, *, Auto"
+                                        RowDefinitions="*"
+                                        Padding="0"
+                                        Margin="0"
+                                        RowSpacing="1">
+                                            <Label
+                                                Grid.Column="0" Grid.Row="0"
+                                                Text="{Binding .}"
+                                                FontSize="16"/>
+                                            <ImageButton
+                                                Grid.Column="2" Grid.Row="0"
+                                                Style="{StaticResource SmallDeleteButton}"
+                                                CommandParameter="{Binding .}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddShiftsystemViewModel}}, Path=DeleteShiftpatternEntryCommand}"/>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <BoxView
+                    FlexLayout.Basis="1%"/>
+                <Grid
+                    FlexLayout.Basis="33%"
+                    ColumnDefinitions="*, Auto, Auto, *"
+                    RowDefinitions="Auto, Auto, Auto, *"
+                    RowSpacing="4"
+                    ColumnSpacing="2">
+                    <Button Grid.Column="1" Grid.Row="0"
+                            Style="{StaticResource ShiftSelectionButton}"
+                            Text="F12"
+                            Command="{Binding AddF12Command}"/>
+                    <Button Grid.Column="2" Grid.Row="0"
+                            Style="{StaticResource ShiftSelectionButton}"
+                            Text="N12"
+                            Command="{Binding AddN12Command}"/>
+                    <Button Grid.Column="1" Grid.Row="1"
+                            Style="{StaticResource ShiftSelectionButton}"
+                            Text="F"
+                            Command="{Binding AddFCommand}"/>
+                    <Button Grid.Column="2" Grid.Row="1"
+                            Style="{StaticResource ShiftSelectionButton}"
+                            Text="S"
+                            Command="{Binding AddSCommand}"/>
+                    <Button Grid.Column="1" Grid.Row="2"
+                            Style="{StaticResource ShiftSelectionButton}"
+                            Text="N"
+                            Command="{Binding AddNCommand}"/>
+                    <Button Grid.Column="2" Grid.Row="2"
+                            Style="{StaticResource ShiftSelectionButton}"
+                            Text="-"
+                            Command="{Binding AddMinusCommand}"/>
+                    </Grid>
+            </FlexLayout>
             
-            <Label Grid.Column="0" Grid.Row="4"
-                   Text="Number of Shiftgroups: "/>
-            <Entry Grid.Column="1" Grid.Row="4"
-                   Placeholder="Enter the number of shiftgroups in this shiftsystem"
-                   Text="{Binding NumberOfShiftgroups}"/>
-            <Button Grid.Column="2" Grid.Row="4"
-                    WidthRequest="140"
-                    Text="Get Shiftgroups"
+            <Label 
+                Style="{StaticResource WarningLabel}"
+                Text="The shiftpattern doesn't match the minimum amount of days. Check the pattern."
+                IsVisible="{Binding IsEmptyShiftpattern}"/>
+            
+            <Label
+                Text="Number of Shiftgroups: "/>
+            <FlexLayout
+                Direction="Row"
+                FlexLayout.Grow="0.2"
+                JustifyContent="SpaceEvenly">
+                <Entry
+                    FlexLayout.Basis="75%"
+                    Placeholder="Enter number of shiftgroups"
+                    Text="{Binding NumberOfShiftgroups}"/>
+                <Button
+                    FlexLayout.Basis="23%"
+                    Style="{StaticResource ShiftSelectionButton}"
+                    Text="Check"
                     Command="{Binding CheckShiftgroupsWithShiftsystemCommand}"/>
+            </FlexLayout>
             
-            <Label Grid.Column="0" Grid.Row="5"
-                   Grid.ColumnSpan="3"
-                   Text="The number of shiftgroups doesn't fit to the entered shiftpattern. Check shiftpattern and number of shiftgroups"
-                   FontSize="12"
-                   TextColor="Red"
-                   IsVisible="{Binding IsNotValidNumberForShiftsystem}"/>
-            <CollectionView Grid.Column="0" Grid.Row="6"
-                            Grid.ColumnSpan="3"
-                            ItemsSource="{Binding ShiftgroupStartdates}"
-                            HeightRequest="365"
-                            BackgroundColor="Pink">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type helperClass:ShiftgroupDatetimes}">
-                        <Grid>
-                            <Frame Padding="5"
-                                   Margin="2"
-                                   MinimumHeightRequest="70"
-                                   MaximumHeightRequest="70">
-                                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
-                                      RowSpacing="2">
-                                    <Label Grid.Column="0" Grid.Row="0"
-                                           Text="{Binding Shiftgroup}"
-                                           FontSize="22" FontAttributes="Bold"/>
-                                    <Label Grid.Column="0" Grid.Row="1"
-                                           Text="Shiftpattern startdate: "/>
-                                    <DatePicker Grid.Column="1" Grid.Row="1"
-                                        Date="{Binding Startdate}"/>
-                                </Grid>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Label
+                Style="{StaticResource WarningLabel}"
+                Text="The number of shiftgroups doesn't fit to the entered shiftpattern. Check shiftpattern and number of shiftgroups"
+                IsVisible="{Binding IsNotValidNumberForShiftsystem}"/>
+            
+            <FlexLayout
+                FlexLayout.Grow="1">
+                <CollectionView 
+                    ItemsUpdatingScrollMode="KeepLastItemInView"
+                    ItemsSource="{Binding ShiftgroupStartdates}"
+                    FlexLayout.Grow="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type helperClass:ShiftgroupDatetimes}">
+                            <Grid
+                                Style="{StaticResource BaseGrid}">
+                                <Frame>
+                                    <Grid 
+                                        ColumnDefinitions="Auto, Auto, *, Auto" RowDefinitions="Auto,Auto">
+                                        <Label 
+                                            Grid.Column="0" Grid.Row="0"
+                                            Text="{Binding Shiftgroup}"/>
+                                        <BoxView
+                                            Grid.Column="1" Grid.Row="0"
+                                            WidthRequest="2"/>
+                                        <Label 
+                                            Grid.Column="2" Grid.Row="0"
+                                            Style="{StaticResource PatternStartdateLabel}"
+                                            Text="Pattern Startdate: "/>
+                                        <DatePicker 
+                                            Grid.Column="3" Grid.Row="0"
+                                            Format="d"
+                                            Date="{Binding Startdate}"/>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </FlexLayout>
 
-            <Button Grid.Column="0" Grid.Row="7"
-                    Grid.ColumnSpan="3"
-                    Text="Create Shiftsystem"
-                    Command="{Binding CreateShiftsystemCommand}"/>
-            
-            
-        </Grid>
-    </ScrollView>
+            <Button 
+                FlexLayout.AlignSelf="Center"
+                Style="{StaticResource AddButton}"
+                Text="Create Shiftsystem"
+                Command="{Binding CreateShiftsystemCommand}"/>
+    </FlexLayout>
 </ContentPage>

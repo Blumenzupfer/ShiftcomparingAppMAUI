@@ -4,7 +4,7 @@ using ShiftComparingUI.DataAccess;
 using ShiftComparingUI.ViewModels;
 using ShiftComparingUI.ViewModels.Persons;
 using ShiftComparingUI.ViewModels.ComparingTable;
-using ShiftComparingUI.Views;
+using ShiftComparingUI.ViewModels.Shiftsystems;
 using ShiftComparingUI.Views.ComparingTables;
 using ShiftComparingUI.Views.Persons;
 using ShiftComparingUI.Views.Shiftsystems;
@@ -23,6 +23,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("Roboto-Regular.ttf", "RobotoRegular");
+                fonts.AddFont("Roboto-Thin.ttf", "RobotoThin");
             });
 
         ShiftsystemDataAccess.CreateShiftsystemTable();
@@ -30,7 +31,8 @@ public static class MauiProgram
         ComparingTableDataAccess.CreateComparingTableTable();
         ComparingTableDataAccess.CreateReferenceTableTable();
         
-        builder.Services.AddSingleton<ShiftsystemViewModel>();
+        builder.Services.AddTransient<ShiftsystemViewModel>();
+        builder.Services.AddTransient<AddShiftsystemViewModel>();
         
         builder.Services.AddTransient<PersonsViewModel>();
         builder.Services.AddTransient<AddPersonViewModel>();
@@ -41,7 +43,7 @@ public static class MauiProgram
         builder.Services.AddTransient<CreateCsvViewModel>();
         
         builder.Services.AddSingleton<AllShiftsystemsView>();
-        builder.Services.AddSingleton<AddShiftsystemView>();
+        builder.Services.AddTransient<AddShiftsystemView>();
         builder.Services.AddSingleton<EditShiftsystemView>();
 
         builder.Services.AddTransient<AllPersonsView>();

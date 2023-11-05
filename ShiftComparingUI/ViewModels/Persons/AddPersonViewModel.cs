@@ -30,6 +30,7 @@ public partial class AddPersonViewModel : ObservableObject
     [RelayCommand]
     void SelectShiftsystem()
     {
+        ShiftgroupList.Clear();
         foreach (var shiftgroup in ShiftsystemModel.ShiftgroupStartdatesToList(SelectedShiftsystem.ShiftgroupStartdates))
         {
             ShiftgroupList.Add(shiftgroup);

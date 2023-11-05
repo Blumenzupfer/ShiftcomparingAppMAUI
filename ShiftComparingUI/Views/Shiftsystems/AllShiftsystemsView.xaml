@@ -7,49 +7,58 @@
              x:DataType="viewmodel:ShiftsystemViewModel"
              x:Class="ShiftComparingUI.Views.Shiftsystems.AllShiftsystemsView"
              Title="Shiftsystems">
-    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto,*"
-          RowSpacing="10"
-          Padding="10">
-        <Button 
-            Grid.Column="1" Grid.Row="0"
-            Text="Add"
-            Command="{Binding NavigateToAddPageCommand}"
-            BackgroundColor="LimeGreen"
-            FontSize="22"/>
-        
-        <CollectionView Grid.Column="0" Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        BackgroundColor="Purple"
-                        ItemsSource="{Binding ListOfShiftsystems}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:ShiftsystemModel">
-                    <Grid>
-                        <Frame>
-                            <Grid ColumnDefinitions="*,Auto">
-                                <VerticalStackLayout Grid.Column="0" Grid.Row="0">
-                                    <Label Text="{Binding Name}" 
-                                           FontSize="18"/>
-                                    <Label Text="{Binding Description}"
-                                           FontSize="12"/>
-                                </VerticalStackLayout>
-                                <HorizontalStackLayout Grid.Column="1" Grid.Row="0">
-                                    <Button Text="Delete"
-                                            BackgroundColor="Red"
+    <FlexLayout 
+        Direction="Column"
+        AlignItems="Start"
+        JustifyContent="SpaceEvenly">
+        <Label
+            Text="Registered Shiftsystems"/>
+        <FlexLayout
+            FlexLayout.Grow="1">
+            <CollectionView 
+                FlexLayout.Grow="1"
+                ItemsSource="{Binding ListOfShiftsystems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ShiftsystemModel">
+                        <Grid
+                            Style="{StaticResource BaseGrid}">
+                            <Frame>
+                                <Grid 
+                                    ColumnDefinitions="*, Auto"
+                                    RowDefinitions="Auto, Auto"
+                                    RowSpacing="0">
+                                    <Label
+                                        Grid.Column="0" Grid.Row="0"
+                                        Text="{Binding Name}"/>
+                                    <Label 
+                                        Grid.Column="0" Grid.Row="1"
+                                        Style="{StaticResource DescriptionLabel}"
+                                        Text="{Binding Description}"/>
+                                    <HorizontalStackLayout
+                                        Grid.Column="1" Grid.Row="0"
+                                        Grid.RowSpan="2">
+                                        <ImageButton 
+                                            Style="{StaticResource EditButton}"
+                                            HorizontalOptions="End"
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShiftsystemViewModel}}, Path=NavigateToEditPageCommand}"/>
+                                        <ImageButton
+                                            Style="{StaticResource DeleteButton}"
+                                            HorizontalOptions="End"
                                             CommandParameter="{Binding .}"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShiftsystemViewModel}}, Path=DeleteShiftsystemCommand}"/>
-                                    <Button Text="Edit"
-                                            BackgroundColor="Blue"
-                                            CommandParameter="{Binding .}"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShiftsystemViewModel}}, Path=NavigateToEditPageCommand}"
-                                            />
-                                </HorizontalStackLayout>
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-            
-        </CollectionView>
-        
-    </Grid>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </FlexLayout>
+        <Button 
+            FlexLayout.AlignSelf="End"
+            Style="{StaticResource AddButton}"
+            Text="Add New Shiftsystem"
+            Command="{Binding NavigateToAddPageCommand}"/>
+    </FlexLayout>
 </ContentPage>

@@ -5,9 +5,13 @@
              xmlns:viewmodel="clr-namespace:ShiftComparingUI.ViewModels.Persons"
              xmlns:helperClass="clr-namespace:ShiftComparingUI.HelperClasses"
              x:DataType="viewmodel:AddPersonViewModel"
-             x:Class="ShiftComparingUI.Views.Persons.AddPersonView">
-    <ScrollView>
-        <VerticalStackLayout>
+             x:Class="ShiftComparingUI.Views.Persons.AddPersonView"
+             Title="Add New Person">
+    <FlexLayout>
+        <FlexLayout
+            Direction="Column"
+            JustifyContent="SpaceEvenly"
+            FlexLayout.Grow="1">
             <Label
                 Text="Name:"/>
             <Entry
@@ -18,65 +22,69 @@
                 Text="Shortcut name (max. 5 letters):"/>
             <Entry
                 Text="{Binding TableName}"
+                MaxLength="5"
+                TextTransform="Uppercase"
                 Placeholder="Enter a shortcut name"/>
             
             <Label
                 Text="Shiftsystem:"/>
-            <CollectionView
-                ItemsSource="{Binding ListOfShiftsystems}"
-                SelectionMode="Single"
-                SelectedItem="{Binding SelectedShiftsystem}"
-                SelectionChangedCommand="{Binding SelectShiftsystemCommand}"
-                MaximumHeightRequest="300">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Frame>
-                                <Label
-                                    Text="{Binding Name}"/>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            
+            <FlexLayout
+                FlexLayout.Grow="1">
+                <CollectionView
+                    ItemsSource="{Binding ListOfShiftsystems}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedShiftsystem}"
+                    SelectionChangedCommand="{Binding SelectShiftsystemCommand}"
+                    FlexLayout.Grow="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Style="{StaticResource BaseGrid}">
+                                <Frame>
+                                    <Label
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Name}"/>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </FlexLayout>
             <Label
                 Text="Shiftgroup:"/>
-            <CollectionView 
+            <FlexLayout
+                FlexLayout.Grow="1">
+                <CollectionView 
                     ItemsSource="{Binding ShiftgroupList}"
-                    HeightRequest="365"
-                    BackgroundColor="Pink"
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedShiftgroup}"
-                    SelectionChangedCommand="{Binding SelectShiftgroupCommand}">
-                            
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type helperClass:ShiftgroupDatetimes}">
-                        <Grid>
-                            <Frame Padding="5"
-                                   Margin="2"
-                                   MinimumHeightRequest="70"
-                                   MaximumHeightRequest="70">
-                                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
-                                      RowSpacing="2">
-                                    <Label Grid.Column="0" Grid.Row="0"
-                                           Text="{Binding Shiftgroup}"
-                                           FontSize="22" FontAttributes="Bold"/>
-                                    <Label Grid.Column="0" Grid.Row="1"
-                                           Text="Shiftpattern startdate: "/>
-                                    <DatePicker Grid.Column="1" Grid.Row="1"
-                                                Date="{Binding Startdate}"/>
-                                </Grid>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    SelectionChangedCommand="{Binding SelectShiftgroupCommand}"
+                    FlexLayout.Grow="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type helperClass:ShiftgroupDatetimes}">
+                            <Grid
+                                Style="{StaticResource BaseGrid}">
+                                <Frame>
+                                    <HorizontalStackLayout>
+                                        <Label
+                                            HorizontalTextAlignment="Start"
+                                            Text="{Binding Shiftgroup}"/>
+                                        <Label
+                                            HorizontalTextAlignment="End"
+                                            Text="{Binding Startdate, StringFormat='{0:d}'}"/>
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </FlexLayout>
             
             <Button
+                Style="{StaticResource AddButton}"
                 Text="Create new Person"
-                BackgroundColor="LightBlue"
                 Command="{Binding CreatePersonCommand}"/>
-        </VerticalStackLayout>
-    </ScrollView>
+        </FlexLayout>
+    </FlexLayout>
+        
 </ContentPage>
